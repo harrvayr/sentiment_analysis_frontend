@@ -4,8 +4,8 @@
 </script>
 
 <div>
-    <input bind:value={stringi}/>
-    <button onclick={analyzeString}>Analyze sentiment</button>
+    <input placeholder="Text you want to analyze" bind:value={stringi}/>
+    <button onclick={analyzeString}>Analyze!</button>
 </div>
 
 <style>

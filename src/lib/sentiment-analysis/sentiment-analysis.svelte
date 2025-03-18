@@ -1,23 +1,24 @@
 <script lang="ts">
     import type { JsonResponse } from "../../types/sentiment-analysis";
     import AnalysisAnswer from "./analysis-answer.svelte";
-    import SentimentInput from "./sentiment-input.svelte";
+    import TextInput from "./text-input.svelte";
 
-    let userSentiment: string = $state("s")
+    let userText: string = $state("")
     let analysisAnswer: string = $state("")
-    let result: JsonResponse | undefined = $state() 
-	
+    let result: JsonResponse | undefined = $state()
+
+
     async function doPost () {
 		const res = await fetch('https://httpbin.org/post', {
 			method: 'POST',
 			body: JSON.stringify({
-				"sentiment": userSentiment,
+				"sentiment": userText,
 				"analysis": analys()
 			})
 		})
 		
 		const json = await res.json()
-		result = {sentiment: json.json.sentiment, analysis: json.json.analysis}
+		result = {textToAnalyze: json.json.sentiment, analysis: json.json.analysis}
 	}
 
     function analyzeS() {
@@ -37,12 +38,7 @@
 </script>
 
 <div>
-    <SentimentInput bind:stringi={userSentiment} analyzeString={doPost}></SentimentInput>
+    <TextInput bind:stringi={userText} analyzeString={doPost}></TextInput>
     <AnalysisAnswer answer={result?.analysis}></AnalysisAnswer>
 </div>
 
-<style>
-    div {
-        border: 2px dotted red;
-    } 
-</style>
