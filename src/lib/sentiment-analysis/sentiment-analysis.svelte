@@ -7,33 +7,23 @@
     let analysisAnswer: string = $state("")
     let result: JsonResponse | undefined = $state()
 
-
+//"http://localhost:8100/analyze"
     async function doPost () {
-		const res = await fetch('https://httpbin.org/post', {
+		const res = await fetch('https://cc-assignment4-cc-sentiment-analysis-backend.2.rahtiapp.fi/analyze', {
 			method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
 			body: JSON.stringify({
-				"sentiment": userText,
-				"analysis": analys()
+				"text": userText,
 			})
 		})
 		
 		const json = await res.json()
-		result = {textToAnalyze: json.json.sentiment, analysis: json.json.analysis}
+        console.log(json)
+		result = {textToAnalyze: json["text"], analysis: json["sentiment"]}
 	}
 
-    function analyzeS() {
-        const n = Math.random()
-        if(n<0.5){
-            return "NEGATIVE"
-        } else {
-            return "POSITIVE"
-        }
-    }
-
-    function analys(){
-        analysisAnswer = analyzeS()
-        return analysisAnswer
-    }
      
 </script>
 
