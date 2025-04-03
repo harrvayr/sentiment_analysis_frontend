@@ -7,12 +7,13 @@
     let analysisAnswer: string = $state("")
     let result: JsonResponse | undefined = $state()
 
-//"http://localhost:8100/analyze"
+//"https://cc-assignment4-cc-sentiment-analysis-backend.2.rahtiapp.fi/analyze "
     async function doPost () {
-		const res = await fetch('https://cc-assignment4-cc-sentiment-analysis-backend.2.rahtiapp.fi/analyze', {
+		const res = await fetch('http://localhost:8100/analyze', {
 			method: 'POST',
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjoieWVzIn0.0xCgQyHl9bAtlZLKAkrI_ZIb3julu8p3kLq7E_Ytc9slytJOnzYPTdFze9CvgvvaiuvkFjEGiWHWbZFtlYLWXg"
             },
 			body: JSON.stringify({
 				"text": userText,
