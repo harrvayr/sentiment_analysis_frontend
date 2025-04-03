@@ -7,9 +7,9 @@
     let analysisAnswer: string = $state("")
     let result: JsonResponse | undefined = $state()
 
-//"https://cc-assignment4-cc-sentiment-analysis-backend.2.rahtiapp.fi/analyze "
+//"http://localhost:8100/analyze"
     async function doPost () {
-		const res = await fetch('http://localhost:8100/analyze', {
+		const res = await fetch('https://cc-assignment4-cc-sentiment-analysis-backend.2.rahtiapp.fi/analyze', {
 			method: 'POST',
             headers: {
                 "Content-Type": "application/json",
